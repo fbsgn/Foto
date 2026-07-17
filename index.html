@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fotografie – Portfolio</title>
+<meta name="description" content="Portfolio, Prints & Fotokurse">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #FAFAF7;
+  --cream2: #F0EEE8;
+  --cream3: #E8E4DC;
+  --text: #2A2A2A;
+  --muted: #7A7570;
+  --lilac: #B87FC4;
+  --lilac-light: #F3EBF6;
+  --lilac-dark: #8A5A9A;
+  --lilac2: #D4A8DE;
+  --rose: #E8A0B0;
+  --sage: #8AAF9A;
+  --gold: #C9A96E;
+  --white: #FFFFFF;
+  --border: #E0DDD6;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--cream); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,250,247,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+.nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: var(--font-display); font-size: 22px; font-weight: 400; letter-spacing: -0.01em; color: var(--text); text-decoration: none; }
+.nav-logo em { color: var(--lilac); font-style: italic; }
+.nav-links { display: flex; gap: 2rem; align-items: center; }
+.nav-links a { font-size: 14px; font-weight: 400; color: var(--muted); text-decoration: none; transition: color 0.2s; letter-spacing: 0.02em; }
+.nav-links a:hover { color: var(--text); }
+.nav-cta { background: var(--lilac) !important; color: #fff !important; padding: 8px 18px; border-radius: 50px; font-weight: 500 !important; }
+.nav-cta:hover { background: var(--lilac-dark) !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
+.mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 99; background: var(--cream); border-bottom: 1px solid var(--border); padding: 1.5rem 2rem; flex-direction: column; gap: 1.2rem; }
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-size: 16px; color: var(--text); text-decoration: none; }
+@media (max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } }
+
+/* HERO */
+.hero { min-height: 100vh; display: flex; align-items: center; padding: 80px 2rem 0; position: relative; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, var(--cream) 0%, #EDE8F5 50%, #F5EBF0 100%); z-index: 0; }
+.hero-blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.4; z-index: 0; }
+.hero-blob-1 { width: 500px; height: 500px; background: var(--lilac2); top: -100px; right: -100px; }
+.hero-blob-2 { width: 300px; height: 300px; background: var(--rose); bottom: 100px; left: -50px; }
+.hero-blob-3 { width: 200px; height: 200px; background: var(--sage); bottom: 200px; right: 200px; }
+.hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 1; padding-bottom: 4rem; }
+.hero-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--lilac-dark); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; }
+.hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--lilac); }
+.hero-title { font-family: var(--font-display); font-size: clamp(2.8rem, 5vw, 4.2rem); font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+.hero-title em { font-style: italic; color: var(--lilac-dark); }
+.hero-desc { font-size: 17px; font-weight: 300; color: var(--muted); line-height: 1.7; margin-bottom: 2.5rem; max-width: 420px; }
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: 50px; font-family: var(--font-body); font-size: 14px; font-weight: 500; text-decoration: none; cursor: pointer; border: none; transition: all 0.2s; }
+.btn-primary { background: var(--lilac); color: #fff; }
+.btn-primary:hover { background: var(--lilac-dark); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(184,127,196,0.4); }
+.btn-outline { background: transparent; border: 1.5px solid var(--border); color: var(--text); }
+.btn-outline:hover { border-color: var(--lilac); color: var(--lilac); }
+.hero-images { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 12px; }
+.hero-img { border-radius: var(--radius-lg); overflow: hidden; background: var(--cream2); }
+.hero-img:first-child { grid-column: 1 / 3; aspect-ratio: 16/9; }
+.hero-img:nth-child(2), .hero-img:nth-child(3) { aspect-ratio: 4/5; }
+.hero-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.hero-img:hover img { transform: scale(1.04); }
+.hero-img-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: linear-gradient(135deg, var(--cream2), var(--lilac-light)); color: var(--muted); font-size: 13px; padding: 2rem; }
+.hero-img-placeholder .ico { font-size: 32px; opacity: 0.5; }
+.hero-stats { display: flex; gap: 2rem; margin-top: 2rem; }
+.stat-num { font-family: var(--font-display); font-size: 28px; font-weight: 600; color: var(--text); line-height: 1; }
+.stat-label { font-size: 12px; color: var(--muted); margin-top: 3px; }
+@media (max-width: 900px) { .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; } .hero-images { max-width: 500px; } }
+
+/* SECTIONS */
+section { padding: 6rem 2rem; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-header { margin-bottom: 3rem; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--lilac-dark); margin-bottom: 10px; }
+.section-title { font-family: var(--font-display); font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 400; line-height: 1.2; letter-spacing: -0.02em; }
+.section-title em { font-style: italic; color: var(--lilac-dark); }
+.section-sub { font-size: 16px; color: var(--muted); margin-top: 12px; max-width: 520px; line-height: 1.7; }
+
+/* GALERIE */
+#galerie { background: var(--white); }
+.gallery-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 2rem; }
+.filter-btn { padding: 6px 16px; border-radius: 50px; border: 1.5px solid var(--border); background: transparent; color: var(--muted); font-family: var(--font-body); font-size: 13px; cursor: pointer; transition: all 0.2s; }
+.filter-btn.active, .filter-btn:hover { background: var(--lilac); border-color: var(--lilac); color: #fff; }
+.masonry { columns: 3; column-gap: 16px; }
+@media (max-width: 900px) { .masonry { columns: 2; } }
+@media (max-width: 500px) { .masonry { columns: 1; } }
+.gallery-item { break-inside: avoid; margin-bottom: 16px; border-radius: var(--radius); overflow: hidden; position: relative; cursor: pointer; background: var(--cream2); }
+.gallery-item-inner { position: relative; overflow: hidden; }
+.gallery-placeholder { width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; background: linear-gradient(135deg, var(--cream2), var(--lilac-light)); color: var(--muted); font-size: 12px; padding: 2rem 1rem; }
+.gallery-placeholder .ico { font-size: 28px; opacity: 0.4; }
+.gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(42,42,42,0.85) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s; display: flex; flex-direction: column; justify-content: flex-end; padding: 16px; }
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-item-title { font-family: var(--font-display); font-size: 15px; color: #fff; font-weight: 400; }
+.gallery-item-cat { font-size: 11px; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+.gallery-more { text-align: center; margin-top: 2.5rem; }
+
+/* SHOP */
+#shop { background: var(--cream); }
+.shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+.product-card { background: var(--white); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
+.product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.product-img { aspect-ratio: 4/3; background: linear-gradient(135deg, var(--cream2), var(--lilac-light)); display: flex; align-items: center; justify-content: center; font-size: 48px; opacity: 0.6; position: relative; overflow: hidden; }
+.product-img img { width: 100%; height: 100%; object-fit: cover; opacity: 1; }
+.product-badge { position: absolute; top: 12px; left: 12px; background: var(--lilac); color: #fff; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 50px; letter-spacing: 0.05em; }
+.product-body { padding: 1.25rem; }
+.product-name { font-family: var(--font-display); font-size: 17px; font-weight: 400; margin-bottom: 6px; }
+.product-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
+.product-footer { display: flex; align-items: center; justify-content: space-between; }
+.product-price { font-size: 20px; font-weight: 600; color: var(--text); font-family: var(--font-display); }
+.product-price span { font-size: 13px; color: var(--muted); font-family: var(--font-body); font-weight: 400; }
+.btn-sm { padding: 8px 16px; font-size: 13px; border-radius: 50px; }
+.shop-note { margin-top: 2.5rem; background: var(--lilac-light); border: 1px solid var(--lilac2); border-radius: var(--radius); padding: 1rem 1.25rem; font-size: 14px; color: var(--lilac-dark); display: flex; align-items: center; gap: 12px; }
+.shop-note a { color: var(--lilac-dark); font-weight: 500; }
+
+/* KURSE */
+#kurse { background: linear-gradient(135deg, #EDE8F5 0%, #F5EBF0 100%); }
+.kurse-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+.kurs-card { background: var(--white); border-radius: var(--radius-lg); padding: 2rem; box-shadow: var(--shadow); transition: transform 0.2s; position: relative; overflow: hidden; }
+.kurs-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+.kurs-card.lilac::before { background: linear-gradient(90deg, var(--lilac), var(--lilac2)); }
+.kurs-card.rose::before { background: linear-gradient(90deg, var(--rose), #F0C0D0); }
+.kurs-card.sage::before { background: linear-gradient(90deg, var(--sage), #B0D0BC); }
+.kurs-card:hover { transform: translateY(-3px); }
+.kurs-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 1.2rem; }
+.kurs-icon.lilac { background: var(--lilac-light); }
+.kurs-icon.rose { background: #FDEEF2; }
+.kurs-icon.sage { background: #EEF5F0; }
+.kurs-name { font-family: var(--font-display); font-size: 20px; font-weight: 400; margin-bottom: 8px; }
+.kurs-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 1.5rem; }
+.kurs-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem; }
+.kurs-tag { font-size: 12px; padding: 4px 10px; border-radius: 50px; border: 1px solid var(--border); color: var(--muted); background: var(--cream); }
+.kurs-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--border); padding-top: 1.2rem; }
+.kurs-preis-main { font-size: 22px; font-weight: 600; font-family: var(--font-display); }
+.kurs-preis-sub { font-size: 12px; color: var(--muted); }
+
+/* KONTAKT */
+#kontakt { background: var(--white); }
+.kontakt-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
+@media (max-width: 800px) { .kontakt-grid { grid-template-columns: 1fr; } }
+.kontakt-info p { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
+.kontakt-items { display: flex; flex-direction: column; gap: 16px; }
+.kontakt-item { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--cream); border-radius: var(--radius); text-decoration: none; color: var(--text); transition: background 0.2s; }
+.kontakt-item:hover { background: var(--lilac-light); }
+.kontakt-item-icon { width: 40px; height: 40px; background: var(--lilac-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.kontakt-item-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.kontakt-item-value { font-size: 14px; font-weight: 500; margin-top: 1px; }
+.form-card { background: var(--cream); border-radius: var(--radius-lg); padding: 2.5rem; }
+.form-title { font-family: var(--font-display); font-size: 22px; margin-bottom: 1.5rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+.form-group { margin-bottom: 16px; }
+.form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 6px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: var(--radius); background: var(--white); font-family: var(--font-body); font-size: 14px; color: var(--text); outline: none; transition: border-color 0.2s; appearance: none; -webkit-appearance: none; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--lilac); box-shadow: 0 0 0 3px rgba(184,127,196,0.12); }
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A7570' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+.form-submit { width: 100%; font-size: 15px; padding: 14px; }
+.form-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 12px; line-height: 1.5; }
+.form-success { display: none; text-align: center; padding: 2rem; background: #EEF5F0; border-radius: var(--radius); }
+.form-success .ico { font-size: 40px; margin-bottom: 12px; }
+.form-success p { font-size: 15px; color: var(--text); }
+
+/* FOOTER */
+footer { background: var(--text); color: rgba(255,255,255,0.7); padding: 3rem 2rem; text-align: center; }
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-logo { font-family: var(--font-display); font-size: 24px; color: #fff; margin-bottom: 1rem; }
+.footer-logo em { color: var(--lilac2); font-style: italic; }
+.footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: #fff; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+
+/* MODAL */
+.modal { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; padding: 1rem; }
+.modal.open { display: flex; }
+.modal-card { background: var(--white); border-radius: var(--radius-lg); padding: 2.5rem; max-width: 480px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
+.modal-close { position: absolute; top: 1.2rem; right: 1.2rem; background: var(--cream2); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; color: var(--muted); display: flex; align-items: center; justify-content: center; }
+.modal-title { font-family: var(--font-display); font-size: 22px; margin-bottom: 6px; }
+.modal-sub { font-size: 14px; color: var(--muted); margin-bottom: 1.5rem; }
+
+/* LIGHTBOX */
+.lightbox { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; }
+.lightbox.open { display: flex; }
+.lightbox-inner { max-width: 90vw; max-height: 90vh; border-radius: var(--radius-lg); overflow: hidden; position: relative; background: var(--cream2); display: flex; align-items: center; justify-content: center; padding: 2rem; }
+.lightbox-inner img { max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: var(--radius); }
+.lightbox-close { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; background: rgba(0,0,0,0.5); border: none; border-radius: 50%; color: #fff; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Licht &amp; <em>Linse</em></a>
+    <div class="nav-links">
+      <a href="#galerie">Galerie</a>
+      <a href="#shop">Prints</a>
+      <a href="#kurse">Kurse</a>
+      <a href="#kontakt" class="nav-cta">Anfrage senden</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#galerie" onclick="toggleMenu()">Galerie</a>
+  <a href="#shop" onclick="toggleMenu()">Prints kaufen</a>
+  <a href="#kurse" onclick="toggleMenu()">Kurse buchen</a>
+  <a href="#kontakt" onclick="toggleMenu()">Kontakt</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="start">
+  <div class="hero-bg"></div>
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-blob hero-blob-3"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Portfolio · Prints · Kurse</div>
+      <h1 class="hero-title">Momente, die<br><em>ewig bleiben.</em></h1>
+      <p class="hero-desc">Ich fotografiere das Leben in seiner schoensten Form - von stillen Naturmomenten bis zu bewegenden Portraets. Jedes Bild erzaehlt eine Geschichte.</p>
+      <div class="hero-actions">
+        <a href="#galerie" class="btn btn-primary">Galerie entdecken</a>
+        <a href="#kontakt" class="btn btn-outline">Anfrage stellen</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Jahre Erfahrung</div></div>
+        <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Shootings</div></div>
+        <div class="stat"><div class="stat-num">120+</div><div class="stat-label">Prints verkauft</div></div>
+      </div>
+    </div>
+    <div class="hero-images">
+      <!-- Bilder hier: src="bilder/DATEINAME.jpg" -->
+      <div class="hero-img">
+        <div class="hero-img-placeholder"><span class="ico">📷</span><span>Hauptbild · bilder/hero-main.jpg</span></div>
+      </div>
+      <div class="hero-img">
+        <div class="hero-img-placeholder"><span class="ico">🌿</span><span>bilder/hero-2.jpg</span></div>
+      </div>
+      <div class="hero-img">
+        <div class="hero-img-placeholder"><span class="ico">🎭</span><span>bilder/hero-3.jpg</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section id="galerie">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">Portfolio</div>
+      <h2 class="section-title">Ausgewaehlte <em>Arbeiten</em></h2>
+      <p class="section-sub">Eine Auswahl meiner liebsten Aufnahmen aus verschiedenen Bereichen der Fotografie.</p>
+    </div>
+    <div class="gallery-filters reveal">
+      <button class="filter-btn active" onclick="filterGallery('alle',this)">Alle</button>
+      <button class="filter-btn" onclick="filterGallery('portrait',this)">Portrait</button>
+      <button class="filter-btn" onclick="filterGallery('natur',this)">Natur</button>
+      <button class="filter-btn" onclick="filterGallery('hochzeit',this)">Hochzeit</button>
+      <button class="filter-btn" onclick="filterGallery('architektur',this)">Architektur</button>
+    </div>
+    <div class="masonry" id="gallery">
+
+      <!-- GALERIE-BILDER: src="bilder/DATEI.jpg" eintragen, Platzhalter durch echte Bilder ersetzen -->
+
+      <div class="gallery-item reveal" data-cat="portrait" onclick="openLightbox('bilder/g1.jpg','Goldene Stunde','Portrait')">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder" style="height:260px;background:linear-gradient(135deg,#F3EBF6,#E8C8F0)"><span class="ico">👤</span><span>bilder/g1.jpg</span></div>
+          <div class="gallery-overlay"><div class="gallery-item-title">Goldene Stunde</div><div class="gallery-item-cat">Portrait</div></div>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal" data-cat="natur" onclick="openLightbox('bilder/g2.jpg','Morgentau','Natur')">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder" style="height:200px;background:linear-gradient(135deg,#EEF5F0,#C8E0D0)"><span class="ico">🌿</span><span>bilder/g2.jpg</span></div>
+          <div class="gallery-overlay"><div class="gallery-item-title">Morgentau</div><div class="gallery-item-cat">Natur</div></div>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal" data-cat="hochzeit" onclick="openLightbox('bilder/g3.jpg','Erster Blick','Hochzeit')">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder" style="height:320px;background:linear-gradient(135deg,#FDEEF2,#F0C8D0)"><span class="ico">💐</span><span>bilder/g3.jpg</span></div>
+          <div class="gallery-overlay"><div class="gallery-item-title">Erster Blick</div><div class="gallery-item-cat">Hochzeit</div></div>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal" data-cat="architektur" onclick="openLightbox('bilder/g4.jpg','Licht und Schatten','Architektur')">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder" style="height:240px;background:linear-gradient(135deg,#EEF0F5,#C8D0E0)"><span class="ico">🏛️</span><span>bilder/g4.jpg</span></div>
+          <div class="gallery-overlay"><div class="gallery-item-title">Licht &amp; Schatten</div><div class="gallery-item-cat">Architektur</div></div>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal" data-cat="natur" onclick="openLightbox('bilder/g5.jpg','Nebelmeer','Natur')">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder" style="height:280px;background:linear-gradient(135deg,#EDF5F5,#B0D8D8)"><span class="ico">🌄</span><span>bilder/g5.jpg</span></div>
+          <div class="gallery-overlay"><div class="gallery-item-title">Nebelmeer</div><div class="gallery-item-cat">Natur</div></div>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal" data-cat="portrait" onclick="openLightbox('bilder/g6.jpg','Stille Momente','Portrait')">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder" style="height:220px;background:linear-gradient(135deg,#F5F0F8,#D8C0E8)"><span class="ico">🎭</span><span>bilder/g6.jpg</span></div>
+          <div class="gallery-overlay"><div class="gallery-item-title">Stille Momente</div><div class="gallery-item-cat">Portrait</div></div>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal" data-cat="hochzeit" onclick="openLightbox('bilder/g7.jpg','Erster Tanz','Hochzeit')">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder" style="height:300px;background:linear-gradient(135deg,#FDF0F5,#E8C0D0)"><span class="ico">💃</span><span>bilder/g7.jpg</span></div>
+          <div class="gallery-overlay"><div class="gallery-item-title">Erster Tanz</div><div class="gallery-item-cat">Hochzeit</div></div>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal" data-cat="architektur" onclick="openLightbox('bilder/g8.jpg','Symmetrie','Architektur')">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder" style="height:200px;background:linear-gradient(135deg,#F0F0F5,#D0D0E8)"><span class="ico">🏙️</span><span>bilder/g8.jpg</span></div>
+          <div class="gallery-overlay"><div class="gallery-item-title">Symmetrie</div><div class="gallery-item-cat">Architektur</div></div>
+        </div>
+      </div>
+
+      <div class="gallery-item reveal" data-cat="natur" onclick="openLightbox('bilder/g9.jpg','Wildblumen','Natur')">
+        <div class="gallery-item-inner">
+          <div class="gallery-placeholder" style="height:250px;background:linear-gradient(135deg,#F5F5EE,#D8D8B0)"><span class="ico">🌸</span><span>bilder/g9.jpg</span></div>
+          <div class="gallery-overlay"><div class="gallery-item-title">Wildblumen</div><div class="gallery-item-cat">Natur</div></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="gallery-more reveal">
+      <a href="#kontakt" class="btn btn-outline">Mehr Bilder auf Anfrage</a>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-inner" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightbox-img" src="" alt="" style="display:none">
+    <span id="lightbox-placeholder" style="font-family:var(--font-display);font-size:16px;color:var(--muted);text-align:center;padding:1rem"></span>
+  </div>
+</div>
+
+<!-- SHOP -->
+<section id="shop">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">Online Print Shop</div>
+      <h2 class="section-title">Kunstdrucke fuer <em>dein Zuhause</em></h2>
+      <p class="section-sub">Hochwertige Fine-Art-Prints auf Premium-Papier oder Leinwand - direkt vom Fotolabor zu dir nach Hause.</p>
+    </div>
+    <div class="shop-grid">
+
+      <div class="product-card reveal">
+        <div class="product-img">
+          <!-- <img src="bilder/shop-1.jpg" alt="Morgentau"> -->
+          🌿
+          <div class="product-badge">Bestseller</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Morgentau</div>
+          <div class="product-desc">Fine-Art-Druck auf Hahnemuhle Photo Rag, 308g/m2. Archivfest, 100 Jahre lichtecht.</div>
+          <div class="product-footer">
+            <div class="product-price">ab 49 &euro; <span>/ 20x30 cm</span></div>
+            <a href="SHOP-LINK-HIER" target="_blank" class="btn btn-primary btn-sm">Bestellen</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal">
+        <div class="product-img">
+          <!-- <img src="bilder/shop-2.jpg" alt="Nebelmeer"> -->
+          🌄
+        </div>
+        <div class="product-body">
+          <div class="product-name">Nebelmeer</div>
+          <div class="product-desc">Stimmungsvolle Landschaftsaufnahme, erhaltlich als Druck oder auf Leinwand gespannt.</div>
+          <div class="product-footer">
+            <div class="product-price">ab 59 &euro; <span>/ 30x45 cm</span></div>
+            <a href="SHOP-LINK-HIER" target="_blank" class="btn btn-primary btn-sm">Bestellen</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal">
+        <div class="product-img">
+          <!-- <img src="bilder/shop-3.jpg" alt="Goldene Stunde"> -->
+          👤
+          <div class="product-badge">Limitiert</div>
+        </div>
+        <div class="product-body">
+          <div class="product-name">Goldene Stunde</div>
+          <div class="product-desc">Limitierte Edition, nummeriert und handsigniert. Nur 25 Exemplare weltweit.</div>
+          <div class="product-footer">
+            <div class="product-price">149 &euro; <span>/ 40x60 cm</span></div>
+            <a href="SHOP-LINK-HIER" target="_blank" class="btn btn-primary btn-sm">Bestellen</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card reveal">
+        <div class="product-img">
+          <!-- <img src="bilder/shop-4.jpg" alt="Wildblumen"> -->
+          🌸
+        </div>
+        <div class="product-body">
+          <div class="product-name">Wildblumen</div>
+          <div class="product-desc">Zarter Naturdruck, perfekt fuer helle Raume. Auf Wunsch auch als Diptychon erhaltlich.</div>
+          <div class="product-footer">
+            <div class="product-price">ab 39 &euro; <span>/ 20x20 cm</span></div>
+            <a href="SHOP-LINK-HIER" target="_blank" class="btn btn-primary btn-sm">Bestellen</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="shop-note reveal">
+      <span style="font-size:20px">🖨️</span>
+      <span>Alle Prints werden uber ein professionelles Fotolabor produziert und direkt zu dir geliefert. Produktionszeit ca. 3-5 Werktage. <a href="#kontakt">Individuelle Formate auf Anfrage.</a></span>
+    </div>
+  </div>
+</section>
+
+<!-- KURSE -->
+<section id="kurse">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">Fotografie lernen</div>
+      <h2 class="section-title">Kurse &amp; <em>Workshops</em></h2>
+      <p class="section-sub">Ob Anfanger oder Fortgeschrittener - in meinen Kursen lernst du die Kamera zu deinem Ausdrucksmittel zu machen.</p>
+    </div>
+    <div class="kurse-grid">
+
+      <div class="kurs-card lilac reveal">
+        <div class="kurs-icon lilac">📷</div>
+        <div class="kurs-name">Kamera verstehen</div>
+        <div class="kurs-desc">Alles uber Blende, Verschlusszeit und ISO - du lernst endlich den manuellen Modus zu nutzen und kreative Fotos zu machen.</div>
+        <div class="kurs-meta">
+          <span class="kurs-tag">📅 2 Tage</span>
+          <span class="kurs-tag">👥 Max. 8 Personen</span>
+          <span class="kurs-tag">🟢 Anfanger</span>
+        </div>
+        <div class="kurs-footer">
+          <div class="kurs-preis"><div class="kurs-preis-main">249 &euro;</div><div class="kurs-preis-sub">inkl. Materialien</div></div>
+          <button class="btn btn-primary btn-sm" onclick="openBooking('Kamera verstehen','249 Euro')">Buchen</button>
+        </div>
+      </div>
+
+      <div class="kurs-card rose reveal">
+        <div class="kurs-icon rose">🌿</div>
+        <div class="kurs-name">Naturfotografie</div>
+        <div class="kurs-desc">Gemeinsam raus in die Natur: Wir fotografieren Pflanzen, Tiere und Landschaften und arbeiten mit verfugbarem Licht.</div>
+        <div class="kurs-meta">
+          <span class="kurs-tag">📅 1 Tag outdoor</span>
+          <span class="kurs-tag">👥 Max. 6 Personen</span>
+          <span class="kurs-tag">🟡 Alle Level</span>
+        </div>
+        <div class="kurs-footer">
+          <div class="kurs-preis"><div class="kurs-preis-main">189 &euro;</div><div class="kurs-preis-sub">inkl. Getranke</div></div>
+          <button class="btn btn-primary btn-sm" onclick="openBooking('Naturfotografie','189 Euro')">Buchen</button>
+        </div>
+      </div>
+
+      <div class="kurs-card sage reveal">
+        <div class="kurs-icon sage">🎭</div>
+        <div class="kurs-name">Portrait Meisterklasse</div>
+        <div class="kurs-desc">Lichtfuhrung, Posing und Kommunikation mit Modellen. Du fotografierst echte Menschen in echten Situationen.</div>
+        <div class="kurs-meta">
+          <span class="kurs-tag">📅 3 Abende</span>
+          <span class="kurs-tag">👥 Max. 5 Personen</span>
+          <span class="kurs-tag">🔴 Fortgeschrittene</span>
+        </div>
+        <div class="kurs-footer">
+          <div class="kurs-preis"><div class="kurs-preis-main">329 &euro;</div><div class="kurs-preis-sub">inkl. Modellhonorar</div></div>
+          <button class="btn btn-primary btn-sm" onclick="openBooking('Portrait Meisterklasse','329 Euro')">Buchen</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- BUCHUNGS-MODAL -->
+<div class="modal" id="booking-modal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeBooking()">✕</button>
+    <div class="modal-title" id="booking-title">Kurs buchen</div>
+    <div class="modal-sub" id="booking-sub"></div>
+    <form id="booking-form" action="https://formspree.io/f/FORMSPREE-ID-HIER" method="POST">
+      <input type="hidden" name="kurs" id="booking-kurs-hidden">
+      <div class="form-row">
+        <div class="form-group"><label>Vorname</label><input type="text" name="vorname" required placeholder="Maria"></div>
+        <div class="form-group"><label>Nachname</label><input type="text" name="nachname" required placeholder="Muster"></div>
+      </div>
+      <div class="form-group"><label>E-Mail</label><input type="email" name="email" required placeholder="maria@beispiel.de"></div>
+      <div class="form-group"><label>Gewunschter Termin</label><input type="date" name="termin" required></div>
+      <div class="form-group">
+        <label>Erfahrungslevel</label>
+        <select name="level">
+          <option value="">Bitte wahlen...</option>
+          <option>Anfanger - ich habe kaum Erfahrung</option>
+          <option>Hobby - ich fotografiere gelegentlich</option>
+          <option>Fortgeschritten - ich kenne die Grundlagen</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Anmerkungen (optional)</label><textarea name="anmerkungen" placeholder="Fragen oder besondere Wunsche..." style="min-height:80px"></textarea></div>
+      <button type="submit" class="btn btn-primary form-submit">Buchungsanfrage senden</button>
+      <p class="form-note">Kein Spam. Deine Daten werden nur fur die Kursabwicklung verwendet.</p>
+    </form>
+    <div class="form-success" id="booking-success">
+      <div class="ico">✅</div>
+      <p><strong>Anfrage erhalten!</strong><br>Ich melde mich innerhalb von 24 Stunden bei dir.</p>
+    </div>
+  </div>
+</div>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">Kontakt</div>
+      <h2 class="section-title">Lass uns <em>reden</em></h2>
+    </div>
+    <div class="kontakt-grid">
+      <div class="kontakt-info reveal">
+        <p>Du hast ein Projekt im Kopf, mochtest einen Print bestellen oder hast Fragen zu meinen Kursen? Ich freue mich uber deine Nachricht!</p>
+        <div class="kontakt-items">
+          <a href="mailto:hallo@beispiel.de" class="kontakt-item">
+            <div class="kontakt-item-icon">✉️</div>
+            <div class="kontakt-item-text"><div class="kontakt-item-label">E-Mail</div><div class="kontakt-item-value">hallo@beispiel.de</div></div>
+          </a>
+          <a href="tel:+4915100000000" class="kontakt-item">
+            <div class="kontakt-item-icon">📞</div>
+            <div class="kontakt-item-text"><div class="kontakt-item-label">Telefon</div><div class="kontakt-item-value">+49 151 00 000 000</div></div>
+          </a>
+          <a href="https://instagram.com" target="_blank" class="kontakt-item">
+            <div class="kontakt-item-icon">📸</div>
+            <div class="kontakt-item-text"><div class="kontakt-item-label">Instagram</div><div class="kontakt-item-value">@licht.und.linse</div></div>
+          </a>
+          <div class="kontakt-item" style="cursor:default">
+            <div class="kontakt-item-icon">📍</div>
+            <div class="kontakt-item-text"><div class="kontakt-item-label">Standort</div><div class="kontakt-item-value">Munchen &amp; Umgebung</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="form-card reveal">
+        <div class="form-title">Nachricht senden</div>
+        <form id="contact-form" action="https://formspree.io/f/FORMSPREE-ID-HIER" method="POST">
+          <div class="form-row">
+            <div class="form-group"><label>Vorname</label><input type="text" name="vorname" required placeholder="Maria"></div>
+            <div class="form-group"><label>Nachname</label><input type="text" name="nachname" required placeholder="Muster"></div>
+          </div>
+          <div class="form-group"><label>E-Mail</label><input type="email" name="email" required placeholder="maria@beispiel.de"></div>
+          <div class="form-group">
+            <label>Betreff</label>
+            <select name="betreff">
+              <option value="">Bitte wahlen...</option>
+              <option>Fotoshooting anfragen</option>
+              <option>Print bestellen</option>
+              <option>Kurs buchen</option>
+              <option>Allgemeine Frage</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Nachricht</label><textarea name="nachricht" required placeholder="Erzahl mir von deinem Projekt..."></textarea></div>
+          <button type="submit" class="btn btn-primary form-submit">Nachricht senden</button>
+          <p class="form-note">Ich antworte in der Regel innerhalb von 24 Stunden.</p>
+        </form>
+        <div class="form-success" id="contact-success">
+          <div class="ico">💌</div>
+          <p><strong>Nachricht erhalten!</strong><br>Ich freue mich und melde mich bald bei dir.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Licht &amp; <em>Linse</em></div>
+    <div class="footer-links">
+      <a href="#galerie">Galerie</a>
+      <a href="#shop">Prints</a>
+      <a href="#kurse">Kurse</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#">Impressum</a>
+      <a href="#">Datenschutz</a>
+    </div>
+    <div class="footer-copy">&copy; 2025 Licht &amp; Linse Fotografie &middot; Alle Rechte vorbehalten</div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
+
+// Scroll Reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Gallery Filter
+function filterGallery(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.style.display = (cat === 'alle' || item.dataset.cat === cat) ? '' : 'none';
+  });
+}
+
+// Lightbox
+function openLightbox(src, titel, kat) {
+  const img = document.getElementById('lightbox-img');
+  const ph = document.getElementById('lightbox-placeholder');
+  img.onload = () => { img.style.display = 'block'; ph.style.display = 'none'; };
+  img.onerror = () => { img.style.display = 'none'; ph.style.display = 'block'; ph.textContent = titel + ' · ' + kat + '\n(Bild: ' + src + ')'; };
+  img.src = src;
+  img.alt = titel;
+  ph.style.display = 'block';
+  ph.textContent = 'Wird geladen...';
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; }
+
+// Booking Modal
+function openBooking(kursName, preis) {
+  document.getElementById('booking-title').textContent = kursName + ' buchen';
+  document.getElementById('booking-sub').textContent = kursName + ' · ' + preis + ' · Anfrage unverbindlich';
+  document.getElementById('booking-kurs-hidden').value = kursName;
+  document.getElementById('booking-modal').classList.add('open');
+  document.getElementById('booking-success').style.display = 'none';
+  document.getElementById('booking-form').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+function closeBooking() { document.getElementById('booking-modal').classList.remove('open'); document.body.style.overflow = ''; }
+document.getElementById('booking-modal').addEventListener('click', function(e) { if (e.target === this) closeBooking(); });
+
+// Formspree
+function setupForm(formId, successId) {
+  const form = document.getElementById(formId);
+  if (!form) return;
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Wird gesendet...';
+    try {
+      const resp = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+      if (resp.ok) {
+        form.style.display = 'none';
+        document.getElementById(successId).style.display = 'block';
+      } else {
+        btn.disabled = false; btn.textContent = 'Senden';
+        alert('Fehler beim Senden. Bitte direkt per E-Mail schreiben.');
+      }
+    } catch { btn.disabled = false; btn.textContent = 'Senden'; alert('Keine Verbindung.'); }
+  });
+}
+setupForm('contact-form', 'contact-success');
+setupForm('booking-form', 'booking-success');
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); closeBooking(); } });
+</script>
+</body>
+</html>
