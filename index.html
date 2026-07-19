@@ -232,6 +232,26 @@ footer { background: var(--text); color: rgba(250,248,245,0.6); padding: 4rem 2.
 .reveal.visible { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
 
+/* CURSOR */
+.cursor { width: 10px; height: 10px; background: var(--lilac); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease; mix-blend-mode: multiply; opacity: 0; }
+.cursor.visible { opacity: 1; }
+.cursor.hover { width: 32px; height: 32px; background: var(--lilac2); }
+@media (pointer: coarse) { .cursor { display: none; } }
+
+/* TESTIMONIALS */
+.testimonials { background: var(--white); padding: 5rem 0; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.testimonials-label { text-align: center; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 2.5rem; }
+.testimonials-track-wrap { overflow: hidden; }
+.testimonials-track { display: flex; gap: 2rem; width: max-content; animation: scrollT 30s linear infinite; padding: 0 1rem; }
+.testimonials-track:hover { animation-play-state: paused; }
+@keyframes scrollT { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.testimonial-card { background: var(--cream); border-radius: var(--radius-xl); padding: 2rem 2.2rem; min-width: 320px; max-width: 320px; border: 1px solid var(--border); flex-shrink: 0; transition: transform 0.2s, box-shadow 0.2s; }
+.testimonial-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.testimonial-stars { color: var(--gold); font-size: 13px; margin-bottom: 1rem; letter-spacing: 2px; }
+.testimonial-text { font-family: var(--font-display); font-size: 16px; font-style: italic; font-weight: 300; line-height: 1.7; color: var(--text); margin-bottom: 1.2rem; }
+.testimonial-author { font-size: 12px; font-weight: 500; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+.testimonial-role { font-size: 11px; color: var(--lilac); margin-top: 3px; letter-spacing: 0.06em; }
+
 /* QUOTE STRIP */
 .quote-strip { background: var(--lilac-light); border-top: 1px solid rgba(155,107,174,0.15); border-bottom: 1px solid rgba(155,107,174,0.15); padding: 4rem 2.5rem; text-align: center; }
 .quote-strip blockquote { font-family: var(--font-display); font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 300; font-style: italic; color: var(--lilac-dark); max-width: 700px; margin: 0 auto; line-height: 1.6; letter-spacing: 0.01em; }
@@ -324,6 +344,26 @@ footer { background: var(--text); color: rgba(250,248,245,0.6); padding: 4rem 2.
 <div class="quote-strip">
   <blockquote>"Fotografie ist die Kunst, einen Moment so einzufangen, dass er nie vergessen werden kann."</blockquote>
   <cite>Licht &amp; Linse</cite>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials">
+  <div class="testimonials-label">Was Kunden sagen</div>
+  <div class="testimonials-track-wrap">
+    <div class="testimonials-track">
+      <div class="testimonial-card"><div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testimonial-text">"Die Bilder von unserem Hochzeitstag sind unbeschreiblich schoen. Jeder Moment wurde so eingefangen, wie wir ihn in Erinnerung behalten wollen."</div><div class="testimonial-author">Sarah &amp; Markus K.</div><div class="testimonial-role">Hochzeit &middot; Juni 2024</div></div>
+      <div class="testimonial-card"><div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testimonial-text">"Der Naturfotografie-Kurs hat mir die Augen geoeffnet. Ich fotografiere seitdem bewusster, geduldiger und mit viel mehr Gefuehl fuer Licht."</div><div class="testimonial-author">Julia M.</div><div class="testimonial-role">Kurs-Teilnehmerin</div></div>
+      <div class="testimonial-card"><div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testimonial-text">"Der Print haengt jetzt ueber unserem Sofa und jeder Besucher fragt sofort danach. Qualitaet und Lieferung waren einfach perfekt."</div><div class="testimonial-author">Thomas R.</div><div class="testimonial-role">Print-Kunde &middot; Nebelmeer</div></div>
+      <div class="testimonial-card"><div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testimonial-text">"Mein Portrait-Shooting war ein echtes Erlebnis. Ich habe mich die ganze Zeit wohlgefuehlt &ndash; und die Ergebnisse sprechen fuer sich."</div><div class="testimonial-author">Anna L.</div><div class="testimonial-role">Portrait-Shooting</div></div>
+      <div class="testimonial-card"><div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testimonial-text">"Endlich verstehe ich meine Kamera wirklich. Der Kurs war praxisnah, herzlich und hat mir genau das gegeben, was ich gesucht habe."</div><div class="testimonial-author">Peter &amp; Claudia W.</div><div class="testimonial-role">Kurs-Teilnehmer</div></div>
+      <!-- Duplikate fuer nahtlosen Loop -->
+      <div class="testimonial-card"><div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testimonial-text">"Die Bilder von unserem Hochzeitstag sind unbeschreiblich schoen. Jeder Moment wurde so eingefangen, wie wir ihn in Erinnerung behalten wollen."</div><div class="testimonial-author">Sarah &amp; Markus K.</div><div class="testimonial-role">Hochzeit &middot; Juni 2024</div></div>
+      <div class="testimonial-card"><div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testimonial-text">"Der Naturfotografie-Kurs hat mir die Augen geoeffnet. Ich fotografiere seitdem bewusster, geduldiger und mit viel mehr Gefuehl fuer Licht."</div><div class="testimonial-author">Julia M.</div><div class="testimonial-role">Kurs-Teilnehmerin</div></div>
+      <div class="testimonial-card"><div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testimonial-text">"Der Print haengt jetzt ueber unserem Sofa und jeder Besucher fragt sofort danach. Qualitaet und Lieferung waren einfach perfekt."</div><div class="testimonial-author">Thomas R.</div><div class="testimonial-role">Print-Kunde &middot; Nebelmeer</div></div>
+      <div class="testimonial-card"><div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testimonial-text">"Mein Portrait-Shooting war ein echtes Erlebnis. Ich habe mich die ganze Zeit wohlgefuehlt &ndash; und die Ergebnisse sprechen fuer sich."</div><div class="testimonial-author">Anna L.</div><div class="testimonial-role">Portrait-Shooting</div></div>
+      <div class="testimonial-card"><div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div class="testimonial-text">"Endlich verstehe ich meine Kamera wirklich. Der Kurs war praxisnah, herzlich und hat mir genau das gegeben, was ich gesucht habe."</div><div class="testimonial-author">Peter &amp; Claudia W.</div><div class="testimonial-role">Kurs-Teilnehmer</div></div>
+    </div>
+  </div>
 </div>
 
 <!-- GALERIE -->
@@ -745,6 +785,33 @@ setupForm('contact-form', 'contact-success');
 setupForm('booking-form', 'booking-success');
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeLightbox(); closeBooking(); } });
+
+// Custom Cursor
+const cursor = document.createElement('div');
+cursor.className = 'cursor';
+document.body.appendChild(cursor);
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  cursor.classList.add('visible');
+});
+document.addEventListener('mouseleave', () => cursor.classList.remove('visible'));
+document.querySelectorAll('a,button,.gallery-item,.product-card,.kurs-card,.testimonial-card').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+});
+
+// Parallax Hero
+if (window.matchMedia('(pointer: fine) and (prefers-reduced-motion: no-preference)').matches) {
+  const imgs = document.querySelectorAll('.hero-img');
+  window.addEventListener('scroll', () => {
+    const s = window.scrollY;
+    imgs.forEach((img, i) => {
+      const speed = [0.07, 0.12, 0.04][i] || 0.05;
+      img.style.transform = 'translateY(' + (s * speed) + 'px)';
+    });
+  }, { passive: true });
+}
 </script>
 </body>
 </html>
